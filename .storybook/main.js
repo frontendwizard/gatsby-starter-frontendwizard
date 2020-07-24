@@ -1,5 +1,7 @@
+const path = require('path')
+
 module.exports = {
-  stories: ['../src/**/*.stories.tsx'],
+  stories: ['../src/**/*.stories.(tsx|mdx)'],
   addons: ['@storybook/addon-actions', '@storybook/addon-docs'],
   webpackFinal: async (config) => {
     config.module.rules.push(
@@ -65,6 +67,22 @@ module.exports = {
           },
         ],
         exclude: [/node_modules\/(?!(gatsby)\/)/],
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: './.storybook/',
+              },
+            },
+          },
+        ],
+
+        include: path.resolve(__dirname, '../storybook/'),
       }
     )
 

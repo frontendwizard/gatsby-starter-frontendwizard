@@ -1,5 +1,8 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
+import { addDecorator } from '@storybook/react'
+
+import '../src/styles.css'
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
